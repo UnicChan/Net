@@ -37,8 +37,7 @@ namespace fs = std::filesystem;
 }
 */
 
-void realSort(std::string filenameStr) { //Не используется ещё нигде. Это функция, которая должна красиво
-                                         //выводить путь 
+void realSort(std::string filenameStr) { //dont using. function,  that should output the path beautifully
 
     std::string tabul;
     int s = filenameStr.size();
@@ -54,7 +53,7 @@ void realSort(std::string filenameStr) { //Не используется ещё нигде. Это функци
     }
 }
 
-void childs(std::string path) {         //Вызывается из следующей функции 'papa', если обнаружен файл
+void childs(std::string path) {         //using by next function 'papa', if a file was detected
     fs::path fsPath = fs::path(path);
 
     for (const auto& entry : fs::directory_iterator(fsPath)) {
@@ -74,8 +73,8 @@ void childs(std::string path) {         //Вызывается из следующей функции 'papa'
 
 }
 
-void papa(std::string path) {    //должно вызываться, когда обнаружена папка, чтобы вывести полный путь
-                                 //(на 85 строчке видно, что я хочу использовать "сортировку" пути)
+void papa(std::string path) {    //should be called when a folder is found to output the full path
+                                 //(the 85th line shows that I want to use the "sort" of the path)
     fs::path fsPath = fs::path(path);
 
     for (const auto& entry : fs::directory_iterator(fsPath)) {
@@ -97,7 +96,7 @@ void papa(std::string path) {    //должно вызываться, когда обнаружена папка, чт
 
 }
 
-void sort(std::string* path) {  //вызывается из следующей функции 'start_sort'
+void sort(std::string* path) {  //called by next function 'start_sort'
     
     //std::cout << "Put namespace: ";
     //std::string path;
@@ -118,9 +117,9 @@ void sort(std::string* path) {  //вызывается из следующей функции 'start_sort'
     }
 }
 
-void start_sort(std::string* path) { //попробовал сделать так, как должен выводиться путь
+void start_sort(std::string* path) { //I tried to do it the way the path should be output
 
-    std::cout << "--как должна выглядеть 'сортировка'--\n" << "Хочешь отсортировать? Press'Y' or 'N': ";
+    std::cout << "--как должна выглядеть 'сортировка'--\n" << "do you want to sort? Press'Y' or 'N': ";
     char c;
     std::cin >> c;
     std::cout << "\n";
@@ -138,8 +137,8 @@ void start_sort(std::string* path) { //попробовал сделать так, как должен выводи
     }
 }
 
-void example(std::string* path) {     //использовать заготовленный путь для программы, или ввести вручную нужный
-    std::cout << "Использовать заготовку (Press any key) или ввести свой путь? (press 0): ";
+void example(std::string* path) {     
+    std::cout << "Use blank (Press any key) or conduct manually? (press 0): ";
     char c;
     std::cin >> c;
     if (c != '0') {
@@ -147,21 +146,21 @@ void example(std::string* path) {     //использовать заготовленный путь для прог
         std::cout << "\n";
     }
     else {
-        std::cout << "Путь: ";
+        std::cout << "Folder: ";
         std::cin >> (*path);
     }
 }
 
 int main() {
-    SetConsoleCP(1251);          //чтобы в консоли русский текст выводился
+    SetConsoleCP(1251);          //for Rus language in cmd
     SetConsoleOutputCP(1251);
 
     std::string path;
     //path = "C:\\Users\\Алексей\\Desktop\\kermit";
-    example(&path);          //начало, ввод нужного пути 
-    papa(path);              //иссследование папок и файлов
+    example(&path);          //folder enter
+    papa(path);              //exploring folders and files
     std::cout << "\n\n";
-    start_sort(&path);       //тестовые функции по "косметике" 
+    start_sort(&path);       //test functions for "cosmetics"
     std::cout << "\n\n";
     return 0;
 }
